@@ -39,7 +39,7 @@ const ContactSection: React.FC = () => {
   };
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:your.email@gmail.com';
+    window.location.href = 'mailto:ivanbilal156@gmail.com';
   };
 
   return (
