@@ -34,20 +34,19 @@ const useIntersectionObserver = (options: IntersectionObserverOptions = {}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
+    const observer = new window.IntersectionObserver(([entry]) => {
       setIsIntersecting(entry.isIntersecting);
     }, options);
-
-    if (ref.current) {
-      observer.observe(ref.current);
+    const node = ref.current;
+    if (node) {
+      observer.observe(node);
     }
-
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (node) {
+        observer.unobserve(node);
       }
     };
-  }, [options.threshold, options.root, options.rootMargin]);
+  }, [options]);
 
   return [ref, isIntersecting] as const;
 };
@@ -55,7 +54,6 @@ const useIntersectionObserver = (options: IntersectionObserverOptions = {}) => {
 // Project Card Component with hover effects
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   const [ref, isInView] = useIntersectionObserver({ threshold: 0.2 });
-  const [isHovered, setIsHovered] = useState(false);
 
   const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -70,8 +68,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       variants={cardVariants}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600 p-8">
         <div className="flex justify-center items-center h-48">

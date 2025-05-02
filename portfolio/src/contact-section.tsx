@@ -16,17 +16,16 @@ const useIntersectionObserver = (options: IntersectionObserverOptions = {}) => {
     const observer = new IntersectionObserver(([entry]) => {
       setIsIntersecting(entry.isIntersecting);
     }, options);
-
-    if (ref.current) {
-      observer.observe(ref.current);
+    const node = ref.current;
+    if (node) {
+      observer.observe(node);
     }
-
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (node) {
+        observer.unobserve(node);
       }
     };
-  }, [options.threshold, options.root, options.rootMargin]);
+  }, [options]);
 
   return [ref, isIntersecting] as const;
 };
