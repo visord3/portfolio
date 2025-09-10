@@ -126,7 +126,7 @@ const ExperienceSection: React.FC = () => {
     {
       title: "Bachelor's in Software Engineering",
       organization: "University of Agder, Grimstad, NO",
-      date: "2022 - 2026",
+      date: "2023 - 2026",
       description: "Pursuing a comprehensive software engineering degree with focus on full-stack development, algorithms, and software design principles.",
       badgeColor: "bg-blue-600",
       category: "education"
@@ -158,7 +158,7 @@ const ExperienceSection: React.FC = () => {
     {
       title: "Personal Project: Shift Management App",
       organization: "Self-initiated",
-      date: "2023",
+      date: "2024",
       description: "Developed a cross-platform mobile app for managing work shifts using React Native and Firebase.",
       bullets: [
         "Implemented user authentication and real-time updates",
@@ -170,7 +170,7 @@ const ExperienceSection: React.FC = () => {
     {
       title: "Personal Project: Tetris Clone",
       organization: "Self-initiated",
-      date: "2022",
+      date: "2024",
       description: "Designed a functional Tetris game using Python and Pygame framework.",
       bullets: [
         "Implemented scoring, collision detection, and responsive controls",
