@@ -151,7 +151,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         <motion.nav
-          className="md:hidden bg-white dark:bg-slate-900 mt-4 rounded-lg shadow-lg py-4 px-6 absolute left-4 right-4"
+          className="md:hidden bg-white dark:bg-slate-900 mt-4 rounded-lg shadow-lg py-4 px-6 absolute left-4 right-4 z-50"
           initial="closed"
           animate={isMobileMenuOpen ? "open" : "closed"}
           variants={mobileMenuVariants}
@@ -162,7 +162,7 @@ const Navbar: React.FC = () => {
                 key={index}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-slate-800 dark:text-white font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                className="text-slate-800 dark:text-white font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors py-2 px-4 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 border-b border-slate-200 dark:border-slate-700 last:border-b-0"
               >
                 {link.name}
               </a>

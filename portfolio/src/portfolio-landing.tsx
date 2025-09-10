@@ -33,10 +33,10 @@ const LandingPage: React.FC = () => {
   const buttonAnimation: AnimationProps = { opacity: 0, scale: 0.9 };
   
   return (
-    <div className="relative h-screen bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden flex items-center justify-center">
+    <div className="relative min-h-screen h-screen bg-gradient-to-br from-white to-slate-100 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 overflow-hidden flex items-center justify-center">
       {/* Interactive background */}
       <div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-20 dark:opacity-30"
         style={{
           backgroundImage: `radial-gradient(
             circle at ${mousePosition.x}px ${mousePosition.y}px,
@@ -50,10 +50,10 @@ const LandingPage: React.FC = () => {
       />
       
       {/* Grid pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-20 dark:opacity-10" />
       
       {/* Content */}
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={initialAnimation}
           animate={animateAnimation}
@@ -61,23 +61,22 @@ const LandingPage: React.FC = () => {
           className="text-center"
         >
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 leading-tight"
             initial={titleAnimation}
             animate={animateAnimation}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <span className="text-indigo-400">Evan</span> Belal
+            <span className="text-indigo-600 dark:text-indigo-400">Evan</span> Belal
           </motion.h1>
           
           <motion.div
             initial={initialAnimation}
             animate={animateAnimation}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="mb-8"
+            className="mb-6 sm:mb-8 px-2"
           >
-            <h2 className="text-xl md:text-2xl text-slate-300 font-light">
+            <h2 className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed">
               Software Engineer | Full-Stack Developer | Ready to learn!
-
             </h2>
           </motion.div>
           
@@ -85,17 +84,17 @@ const LandingPage: React.FC = () => {
             initial={buttonAnimation}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4"
           >
             <a 
               href="#about" 
-              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-all duration-300 transform hover:scale-105"
+              className="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-center font-medium"
             >
               Discover My Work
             </a>
             <a 
               href="#contact" 
-              className="px-6 py-3 bg-transparent border border-indigo-400 text-indigo-400 hover:bg-indigo-400 hover:text-white rounded-md transition-all duration-300 transform hover:scale-105"
+              className="w-full sm:w-auto px-6 py-3 bg-transparent border-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-400 dark:hover:text-white active:bg-indigo-700 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-center font-medium"
             >
               Get In Touch
             </a>
@@ -105,7 +104,7 @@ const LandingPage: React.FC = () => {
       
       {/* Floating tech icons */}
       <motion.div
-        className="absolute bottom-10 left-10 md:bottom-20 md:left-20 w-12 h-12 text-slate-400 opacity-50"
+        className="absolute bottom-4 left-4 sm:bottom-10 sm:left-10 md:bottom-20 md:left-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-slate-600 dark:text-slate-400 opacity-30 sm:opacity-50"
         animate={{
           y: [0, -10, 0],
         }}
@@ -121,7 +120,7 @@ const LandingPage: React.FC = () => {
       </motion.div>
       
       <motion.div
-        className="absolute top-10 right-10 md:top-20 md:right-20 w-12 h-12 text-slate-400 opacity-50"
+        className="absolute top-4 right-4 sm:top-10 sm:right-10 md:top-20 md:right-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-slate-600 dark:text-slate-400 opacity-30 sm:opacity-50"
         animate={{
           y: [0, -15, 0],
         }}
@@ -137,7 +136,7 @@ const LandingPage: React.FC = () => {
       </motion.div>
       
       <motion.div
-        className="absolute top-1/2 right-1/4 w-10 h-10 text-slate-400 opacity-30"
+        className="absolute top-1/2 right-1/4 w-10 h-10 text-slate-600 dark:text-slate-400 opacity-30"
         animate={{
           y: [0, -20, 0],
         }}

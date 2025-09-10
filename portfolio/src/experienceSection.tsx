@@ -62,24 +62,24 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ data, index, isLeft }) => {
       animate={isInView ? "visible" : "hidden"}
       variants={itemVariants}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`relative flex items-center ${isLeft ? 'flex-row-reverse' : ''} mb-8`}
+      className={`relative flex items-center ${isLeft ? 'md:flex-row-reverse' : ''} mb-6 sm:mb-8`}
     >
-      <div className={`w-full md:w-1/2 px-4 ${isLeft ? 'text-right' : ''}`}>
-        <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-          <span className={`inline-block px-4 py-2 rounded text-white text-sm font-semibold mb-3 ${data.badgeColor}`}>
+      <div className={`w-full md:w-1/2 px-2 sm:px-4 ${isLeft ? 'md:text-right' : ''}`}>
+        <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <span className={`inline-block px-3 py-1 sm:px-4 sm:py-2 rounded text-white text-xs sm:text-sm font-semibold mb-2 sm:mb-3 ${data.badgeColor}`}>
             {data.date}
           </span>
-          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
+          <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">
             {data.title}
           </h3>
-          <h4 className="text-lg font-medium text-indigo-600 dark:text-indigo-400 mb-3">
+          <h4 className="text-base sm:text-lg font-medium text-indigo-600 dark:text-indigo-400 mb-2 sm:mb-3">
             {data.organization}
           </h4>
-          <p className="text-slate-600 dark:text-slate-300">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300">
             {data.description}
           </p>
           {data.bullets && (
-            <ul className={`mt-4 text-slate-600 dark:text-slate-300 ${isLeft ? 'text-right list-none' : 'list-disc pl-5'}`}>
+            <ul className={`mt-3 sm:mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 ${isLeft ? 'md:text-right md:list-none' : 'list-disc pl-4 sm:pl-5'}`}>
               {data.bullets.map((bullet, i) => (
                 <li key={i} className="mb-1">
                   {bullet}
@@ -90,8 +90,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ data, index, isLeft }) => {
         </div>
       </div>
       
-      <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-        <div className={`w-4 h-4 rounded-full ${data.badgeColor} z-10`}></div>
+      <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center hidden md:flex">
+        <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${data.badgeColor} z-10`}></div>
         <div className="w-1 h-full bg-indigo-200 dark:bg-indigo-900 absolute"></div>
       </div>
       
@@ -109,6 +109,20 @@ const ExperienceSection: React.FC = () => {
   };
 
   const timelineData: TimelineItemData[] = [
+    {
+      title: "Intern",
+      organization: "Varde",
+      date: "June 2025 - August 2025",
+      description: "Internship focused on React Native and TypeScript development, contributing to software infrastructure and engineering projects on-site in Kristiansand, Norway.",
+      bullets: [
+        "Worked with React Native and TypeScript on production apps",
+        "Collaborated on software infrastructure and engineering tasks",
+        "Utilized CSS and Firebase for front-end and back-end integration",
+        "Gained experience in professional software development environment"
+      ],
+      badgeColor: "bg-red-500",
+      category: "experience"
+    },
     {
       title: "Bachelor's in Software Engineering",
       organization: "University of Agder, Grimstad, NO",

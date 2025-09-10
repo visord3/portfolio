@@ -9,6 +9,24 @@
   }
 }
 
+/* Improve touch targets for mobile */
+button, a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Better scrolling on iOS */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent text selection issues on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Your custom styles */
 body {
   margin: 0;

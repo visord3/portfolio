@@ -234,12 +234,12 @@ const ProjectsSection: React.FC = () => {
           </p>
         </motion.div>
         
-        <div className="flex justify-center flex-wrap gap-3 mb-12">
+        <div className="flex justify-center flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12 px-4">
           {categories.map(category => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-sm transition-all ${
+              className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm transition-all ${
                 activeCategory === category.id
                   ? 'bg-indigo-600 text-white'
                   : 'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'
@@ -251,7 +251,7 @@ const ProjectsSection: React.FC = () => {
         </div>
         
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           initial="hidden"
           animate="visible"
           variants={gridVariants}
