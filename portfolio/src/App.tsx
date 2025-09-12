@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './i18n'; // Initialize i18n
 import Navbar from './navbar-component';
 import PortfolioLanding from './portfolio-landing';
 import AboutSection from './about-section';

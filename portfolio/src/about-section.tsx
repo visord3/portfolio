@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation, Variants } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const AboutSection: React.FC = () => {
+  const { t } = useTranslation();
   const controls = useAnimation();
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState<boolean>(false);
@@ -63,7 +65,7 @@ const AboutSection: React.FC = () => {
         >
           <motion.div variants={itemVariants} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-              About Me
+              {t('aboutTitle')}
             </h2>
             <div className="w-20 h-1 bg-indigo-500 mx-auto"></div>
           </motion.div>
@@ -88,11 +90,11 @@ const AboutSection: React.FC = () => {
               className="md:w-2/3 text-slate-700 dark:text-slate-300"
             >
               <p className="text-lg mb-6">
-                I'm an aspiring software engineer currently studying at the University of Agder in Grimstad, Norway, with an expected graduation in June 2026. My passion lies in building scalable, user-friendly applications that solve real-world problems.
+                {t('aboutDescription1')}
               </p>
               
               <p className="text-lg mb-6">
-                With hands-on experience in full-stack development, mobile apps, and game programming, I enjoy tackling complex challenges and continuously improving through real-world projects and collaboration.
+                {t('aboutDescription2')}
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
@@ -103,8 +105,8 @@ const AboutSection: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-slate-900 dark:text-white">Location</h3>
-                    <p>Grimstad, Norway</p>
+                    <h3 className="font-medium text-slate-900 dark:text-white">{t('aboutLocation')}</h3>
+                    <p>{t('grimstadNorway')}</p>
                   </div>
                 </div>
                 
@@ -115,7 +117,7 @@ const AboutSection: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-slate-900 dark:text-white">Email</h3>
+                    <h3 className="font-medium text-slate-900 dark:text-white">{t('aboutEmail')}</h3>
                     <p>ivanbilal156@gmail.com</p>
                   </div>
                 </div>
@@ -127,8 +129,8 @@ const AboutSection: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-slate-900 dark:text-white">Education</h3>
-                    <p>Bachelor's in Software Engineering</p>
+                    <h3 className="font-medium text-slate-900 dark:text-white">{t('aboutEducation')}</h3>
+                    <p>{t('aboutEducationDetail')}</p>
                   </div>
                 </div>
                 
@@ -139,8 +141,8 @@ const AboutSection: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-slate-900 dark:text-white">Current Role</h3>
-                    <p>Operations Assistant at Elkjøp Arendal</p>
+                    <h3 className="font-medium text-slate-900 dark:text-white">{t('aboutCurrentRole')}</h3>
+                    <p>{t('aboutCurrentRoleDetail')}</p>
                   </div>
                 </div>
               </div>
@@ -155,7 +157,7 @@ const AboutSection: React.FC = () => {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                   </svg>
-                  Download CV
+                  {t('downloadCV')}
                 </a>
               </div>
             </motion.div>

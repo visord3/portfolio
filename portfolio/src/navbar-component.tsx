@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface NavLink {
   name: string;
@@ -10,6 +11,13 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const { t, i18n } = useTranslation();
+  
+  // Handle language change
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'no' : 'en';
+    i18n.changeLanguage(newLang);
+  };
   
   // Handle dark mode
   useEffect(() => {
@@ -37,12 +45,12 @@ const Navbar: React.FC = () => {
   }, []);
   
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
+    { name: t('home'), href: '#home' },
+    { name: t('about'), href: '#about' },
+    { name: t('skills'), href: '#skills' },
+    { name: t('projects'), href: '#projects' },
+    { name: t('experience'), href: '#experience' },
+    { name: t('contact'), href: '#contact' },
   ];
   
   const mobileMenuVariants: Variants = {
@@ -95,11 +103,21 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white font-semibold text-sm"
+              aria-label={t('toggleLanguageAria')}
+              title={t('toggleLanguageTitle')}
+            >
+              {i18n.language === 'en' ? 'NO' : 'EN'}
+            </button>
+            
             {/* Dark Mode Toggle */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
               className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white"
-              aria-label="Toggle Dark Mode"
+              aria-label={t('toggleDarkModeAria')}
             >
               {isDarkMode ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -116,9 +134,17 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
+              onClick={toggleLanguage}
+              className="w-10 h-10 mr-2 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white font-semibold text-sm"
+              aria-label={t('toggleLanguageAria')}
+            >
+              {i18n.language === 'en' ? 'NO' : 'EN'}
+            </button>
+            
+            <button
               onClick={() => setIsDarkMode(!isDarkMode)}
               className="w-10 h-10 mr-2 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white"
-              aria-label="Toggle Dark Mode"
+              aria-label={t('toggleDarkModeAria')}
             >
               {isDarkMode ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

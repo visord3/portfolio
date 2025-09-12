@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, Variants } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface IntersectionObserverOptions {
   threshold?: number;
@@ -101,6 +102,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ data, index, isLeft }) => {
 };
 
 const ExperienceSection: React.FC = () => {
+  const { t } = useTranslation();
   const [ref, isInView] = useIntersectionObserver({ threshold: 0.1 });
   
   const sectionVariants: Variants = {
@@ -110,71 +112,75 @@ const ExperienceSection: React.FC = () => {
 
   const timelineData: TimelineItemData[] = [
     {
-      title: "Intern",
-      organization: "Varde",
-      date: "June 2025 - August 2025",
-      description: "Internship focused on React Native and TypeScript development, contributing to software infrastructure and engineering projects on-site in Kristiansand, Norway.",
+      title: t('internTitle'),
+      organization: t('internOrg'),
+      date: t('internDate'),
+      description: t('internDescription'),
       bullets: [
-        "Worked with React Native and TypeScript on production apps",
-        "Collaborated on software infrastructure and engineering tasks",
-        "Utilized CSS and Firebase for front-end and back-end integration",
-        "Gained experience in professional software development environment"
+        t('internBullet1'),
+        t('internBullet2'),
+        t('internBullet3'),
+        t('internBullet4'),
+        t('internBullet5'),
+        t('internBullet6'),
+        t('internBullet7'),
+        t('internBullet8')
       ],
       badgeColor: "bg-red-500",
       category: "experience"
     },
     {
-      title: "Bachelor's in Software Engineering",
-      organization: "University of Agder, Grimstad, NO",
-      date: "2023 - 2026",
-      description: "Pursuing a comprehensive software engineering degree with focus on full-stack development, algorithms, and software design principles.",
+      title: t('bachelorTitle'),
+      organization: t('bachelorOrg'),
+      date: t('bachelorDate'),
+      description: t('bachelorDescription'),
       badgeColor: "bg-blue-600",
       category: "education"
     },
     {
-      title: "Operations Assistant",
-      organization: "Elkjøp Arendal, Norway",
-      date: "August 2023 - Present",
-      description: "Enhancing store operations and customer experience in Norway's largest electronics retailer.",
+      title: t('elkjopTitle'),
+      organization: t('elkjopOrg'),
+      date: t('elkjopDate'),
+      description: t('elkjopDescription'),
       bullets: [
-        "Optimized store operations and enhanced customer experience",
-        "Managed customer inquiries, contributing to high satisfaction scores"
+        t('elkjopBullet1'),
+        t('elkjopBullet2')
       ],
       badgeColor: "bg-green-600",
       category: "experience"
     },
     {
-      title: "Shift Leader",
-      organization: "McDonald's, Norway",
-      date: "June 2022 - June 2023",
-      description: "Led team operations and provided excellent customer service in a fast-paced environment.",
+      title: t('mcdonaldsTitle'),
+      organization: t('mcdonaldsOrg'),
+      date: t('mcdonaldsDate'),
+      description: t('mcdonaldsDescription'),
       bullets: [
-        "Supervised daily operations and trained new team members",
-        "Promoted a positive and productive work environment"
+        t('mcdonaldsBullet1'),
+        t('mcdonaldsBullet2')
       ],
       badgeColor: "bg-green-600",
       category: "experience"
     },
     {
-      title: "Personal Project: Shift Management App",
-      organization: "Self-initiated",
-      date: "2024",
-      description: "Developed a cross-platform mobile app for managing work shifts using React Native and Firebase.",
+      title: t('shiftProjectTitle'),
+      organization: t('shiftProjectOrg'),
+      date: t('shiftProjectDate'),
+      description: t('shiftProjectDescription'),
       bullets: [
-        "Implemented user authentication and real-time updates",
-        "Created intuitive navigation and responsive UI"
+        t('shiftProjectBullet1'),
+        t('shiftProjectBullet2')
       ],
       badgeColor: "bg-purple-600",
       category: "project"
     },
     {
-      title: "Personal Project: Tetris Clone",
-      organization: "Self-initiated",
-      date: "2024",
-      description: "Designed a functional Tetris game using Python and Pygame framework.",
+      title: t('tetrisProjectTitle'),
+      organization: t('tetrisProjectOrg'),
+      date: t('tetrisProjectDate'),
+      description: t('tetrisProjectDescription'),
       bullets: [
-        "Implemented scoring, collision detection, and responsive controls",
-        "Applied object-oriented programming principles"
+        t('tetrisProjectBullet1'),
+        t('tetrisProjectBullet2')
       ],
       badgeColor: "bg-purple-600",
       category: "project"
@@ -199,12 +205,11 @@ const ExperienceSection: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-            Experience & Education
+            {t('experienceTitle')}
           </h2>
           <div className="w-20 h-1 bg-indigo-500 mx-auto mb-6"></div>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            My professional journey, education, and key project milestones that have shaped
-            my development as a software engineer.
+            {t('experienceDescription')}
           </p>
         </motion.div>
         
@@ -217,7 +222,7 @@ const ExperienceSection: React.FC = () => {
                 : 'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'
             }`}
           >
-            All
+            {t('experienceAll')}
           </button>
           <button
             onClick={() => setActiveFilter('experience')}
@@ -227,7 +232,7 @@ const ExperienceSection: React.FC = () => {
                 : 'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'
             }`}
           >
-            Work Experience
+            {t('experienceWork')}
           </button>
           <button
             onClick={() => setActiveFilter('education')}
@@ -237,7 +242,7 @@ const ExperienceSection: React.FC = () => {
                 : 'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'
             }`}
           >
-            Education
+            {t('experienceEducation')}
           </button>
           <button
             onClick={() => setActiveFilter('project')}
@@ -247,7 +252,7 @@ const ExperienceSection: React.FC = () => {
                 : 'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'
             }`}
           >
-            Key Projects
+            {t('experienceProjects')}
           </button>
         </div>
         

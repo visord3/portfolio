@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface MousePosition {
   x: number;
@@ -14,6 +15,7 @@ interface AnimationProps {
 
 const LandingPage: React.FC = () => {
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
+  const { t } = useTranslation();
   
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -66,7 +68,7 @@ const LandingPage: React.FC = () => {
             animate={animateAnimation}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <span className="text-indigo-600 dark:text-indigo-400">Evan</span> Belal
+            <span className="text-indigo-600 dark:text-indigo-400">{t('name').split(' ')[0]}</span> {t('name').split(' ')[1]}
           </motion.h1>
           
           <motion.div
@@ -76,7 +78,7 @@ const LandingPage: React.FC = () => {
             className="mb-6 sm:mb-8 px-2"
           >
             <h2 className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed">
-              Software Engineer | Full-Stack Developer | Ready to learn!
+              {t('title')}
             </h2>
           </motion.div>
           
@@ -90,13 +92,13 @@ const LandingPage: React.FC = () => {
               href="#about" 
               className="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-center font-medium"
             >
-              Discover My Work
+              {t('discoverWork')}
             </a>
             <a 
               href="#contact" 
               className="w-full sm:w-auto px-6 py-3 bg-transparent border-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-400 dark:hover:text-white active:bg-indigo-700 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-center font-medium"
             >
-              Get In Touch
+              {t('getInTouch')}
             </a>
           </motion.div>
         </motion.div>

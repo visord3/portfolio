@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface IntersectionObserverOptions {
   threshold?: number;
@@ -32,6 +33,7 @@ const useIntersectionObserver = (options: IntersectionObserverOptions = {}) => {
 
 const ContactSection: React.FC = () => {
   const [ref, isInView] = useIntersectionObserver({ threshold: 0.1 });
+  const { t } = useTranslation();
 
   const sectionVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -54,11 +56,11 @@ const ContactSection: React.FC = () => {
           className="text-center mb-12 sm:mb-16 px-4"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-            Get in Touch
+            {t('contactTitle')}
           </h2>
           <div className="w-16 sm:w-20 h-1 bg-indigo-500 mx-auto mb-4 sm:mb-6"></div>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
-            I'd love to hear from you! Feel free to reach out through email or connect with me on social media.
+            {t('contactDescription')}
           </p>
           
           <button
@@ -68,7 +70,7 @@ const ContactSection: React.FC = () => {
             <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            Send me an email
+            {t('sendEmail')}
           </button>
         </motion.div>
       </div>
