@@ -149,7 +149,7 @@ const AboutSection: React.FC = () => {
               
               <div className="mt-10 flex justify-center md:justify-start">
                 <a 
-                  href="/cv-EvanBelal.pdf" 
+                  href="/cv-EvanBelal.pdf?v=2" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-all duration-300 transform hover:scale-105"
