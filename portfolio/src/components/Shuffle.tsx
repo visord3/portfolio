@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
+import LaserFlow from './LaserFlow';
 import './Shuffle.css';
 
 export interface ShuffleProps {
@@ -14,6 +15,18 @@ export interface ShuffleProps {
   scrambleCharset?: string;
   triggerOnHover?: boolean;
   autoStart?: boolean; // New prop to control auto-start
+  // LaserFlow integration props
+  enableLaserFlow?: boolean;
+  laserFlowColor?: string;
+  laserFlowIntensity?: number;
+  laserFlowProps?: {
+    wispDensity?: number;
+    horizontalBeamOffset?: number;
+    verticalBeamOffset?: number;
+    flowSpeed?: number;
+    wispSpeed?: number;
+    wispIntensity?: number;
+  };
 }
 
 const Shuffle: React.FC<ShuffleProps> = ({
@@ -28,7 +41,12 @@ const Shuffle: React.FC<ShuffleProps> = ({
   delay = 0,
   scrambleCharset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*',
   triggerOnHover = true,
-  autoStart = true
+  autoStart = true,
+  // LaserFlow props
+  enableLaserFlow = false,
+  laserFlowColor = '#4f46e5',
+  laserFlowIntensity = 0.3,
+  laserFlowProps = {}
 }) => {
   const ref = useRef<HTMLElement>(null);
   const [isShuffling, setIsShuffling] = useState(false);
@@ -151,13 +169,44 @@ const Shuffle: React.FC<ShuffleProps> = ({
 
   const commonStyle: React.CSSProperties = { textAlign, ...style };
   const classes = `shuffle-parent ${isShuffling ? 'shuffling' : ''} ${className}`;
-  const Tag = tag as keyof JSX.IntrinsicElements;
+  const Tag = tag as React.ElementType;
 
-  return React.createElement(Tag, {
+  const textElement = React.createElement(Tag, {
     ref: ref as any,
     className: classes,
-    style: commonStyle
+    style: { ...commonStyle, position: 'relative', zIndex: 2 }
   }, text);
+
+  if (enableLaserFlow) {
+    return (
+      <div className="shuffle-container" style={{ position: 'relative', display: 'inline-block' }}>
+        <div className="shuffle-laser-background" style={{
+          position: 'absolute',
+          top: '-20%',
+          left: '-20%',
+          width: '140%',
+          height: '140%',
+          pointerEvents: 'none',
+          opacity: laserFlowIntensity,
+          zIndex: 1
+        }}>
+          <LaserFlow
+            color={laserFlowColor}
+            fogIntensity={laserFlowIntensity}
+            horizontalBeamOffset={laserFlowProps.horizontalBeamOffset || 0.0}
+            verticalBeamOffset={laserFlowProps.verticalBeamOffset || 0.2}
+            flowSpeed={laserFlowProps.flowSpeed || 0.2}
+            wispDensity={laserFlowProps.wispDensity || 1.0}
+            wispSpeed={laserFlowProps.wispSpeed || 10.0}
+            wispIntensity={laserFlowProps.wispIntensity || 3.0}
+          />
+        </div>
+        {textElement}
+      </div>
+    );
+  }
+
+  return textElement;
 };
 
 export default Shuffle;

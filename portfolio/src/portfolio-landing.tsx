@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import Shuffle from './components/Shuffle';
+import LaserFlow from './components/LaserFlow';
 
 interface MousePosition {
   x: number;
@@ -16,6 +17,7 @@ interface AnimationProps {
 
 const LandingPage: React.FC = () => {
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const { t } = useTranslation();
   
   useEffect(() => {
@@ -28,6 +30,26 @@ const LandingPage: React.FC = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
+  }, []);
+
+  // Dark mode detection
+  useEffect(() => {
+    const checkDarkMode = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setIsDarkMode(isDark);
+    };
+
+    // Check initial state
+    checkDarkMode();
+
+    // Create a MutationObserver to watch for class changes on the html element
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
   }, []);
   
   const initialAnimation: AnimationProps = { opacity: 0, y: 20 };
@@ -53,6 +75,56 @@ const LandingPage: React.FC = () => {
       
       {/* Grid pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-20 dark:opacity-10" />
+      
+      {/* LaserFlow Background Animation - Only in Dark Mode */}
+      {isDarkMode && (
+        <motion.div 
+          className="laser-flow-hero"
+          initial={{ 
+            opacity: 0, 
+            y: -window.innerHeight,
+            scale: 0.5,
+            rotateX: -90
+          }}
+          animate={{ 
+            opacity: 1, 
+            y: 0,
+            scale: 1,
+            rotateX: 0
+          }}
+          exit={{ 
+            opacity: 0, 
+            y: -window.innerHeight,
+            scale: 0.5,
+            rotateX: -90
+          }}
+          transition={{
+            duration: 1.8,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            delay: 0.3
+          }}
+          style={{
+            transformOrigin: "center top",
+            transformStyle: "preserve-3d"
+          }}
+        >
+          <LaserFlow
+            color="#A855F7"
+            fogIntensity={0.4}
+            horizontalBeamOffset={0.0}
+            verticalBeamOffset={0.1}
+            flowSpeed={0.25}
+            wispDensity={1.5}
+            wispSpeed={10.0}
+            wispIntensity={5.0}
+            verticalSizing={2.0}
+            horizontalSizing={0.8}
+            mouseTiltStrength={0.025}
+            decay={1.2}
+            falloffStart={1.4}
+          />
+        </motion.div>
+      )}
       
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
