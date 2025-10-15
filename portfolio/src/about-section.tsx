@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import ProfileCard from './components/ProfileCard';
 
 const AboutSection: React.FC = () => {
   const { t } = useTranslation();
@@ -73,16 +74,25 @@ const AboutSection: React.FC = () => {
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <motion.div 
               variants={itemVariants}
-              className="md:w-1/3 relative"
+              className="md:w-1/3 relative flex justify-center"
             >
-              <div className="relative z-10 rounded-lg overflow-hidden shadow-xl transform hover:scale-105 transition duration-300">
-                <img
-                  src="/portrait.jpg"
-                  alt="Evan Belal"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              <div className="absolute w-full h-full border-4 border-indigo-500 rounded-lg top-4 left-4 -z-10"></div>
+              <ProfileCard
+                name="Evan Belal"
+                title="Software Engineer"
+                handle="evanbelal"
+                status="Available for hire"
+                contactText="Contact Me"
+                avatarUrl="/portrait.jpg"
+                showUserInfo={true}
+                enableTilt={true}
+                enableMobileTilt={false}
+                onContactClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              />
             </motion.div>
 
             <motion.div 
