@@ -21,3 +21,179 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.logs/)
+.cache
+.parcel-cache
+
+# temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.history/*
+
+# macOS
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# JetBrains IDEs
+.idea/
+
+# Continue AI
+.continue/
+
+# Node.js generated files - comprehensive patterns
+node_modules/
+**/node_modules/
+**/node_modules/**
+node_modules/**/*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore files in parent directory (if any)
+../node_modules/
+../package.json
+../package-lock.json
+../.vscode/
+../src/
+
+# Build outputs and generated files
+build/
+dist/
+out/
+.next/
+.nuxt/
+.vercel/
+.netlify/
+
+# TypeScript
+*.tsbuildinfo
+.tscache/
+
+# React development
+.eslintcache
+tsconfig.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+junit.xml
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Package manager files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime and process files
+*.pid
+*.seed
+*.pid.lock
+.lock-wscript
+
+# Optional files
+.npmrc
+.yarnrc
+
+# Generated documentation
+docs/build/
+storybook-static/
+
+# Backup files
+*.bak
+*.backup
+*.swp
+*.tmp
+
+# macOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows specific
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux specific
+*~
+.nfs*
+
+# VS Code specific (keep only essential)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+.ionide/
