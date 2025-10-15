@@ -1,0 +1,80 @@
+.shuffle-parent {
+  display: inline-block;
+  white-space: normal;
+  word-wrap: break-word;
+  will-change: transform;
+  line-height: 1; /* keep line height consistent before/after split to avoid jump */
+  font-size: 4rem;
+  font-family: 'Press Start 2P', sans-serif;
+  text-transform: uppercase;
+  visibility: hidden; /* hidden until initialized to avoid flash/jump */
+}
+
+.shuffle-parent.is-ready {
+  visibility: visible;
+}
+
+.shuffle-char-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.shuffle-char-wrapper > span {
+  display: inline-flex;
+  will-change: transform;
+}
+
+.shuffle-char {
+  line-height: 1;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Responsive font sizes */
+@media (max-width: 768px) {
+  .shuffle-parent {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shuffle-parent {
+    font-size: 1.8rem;
+  }
+}
+
+/* Custom styling for portfolio */
+.shuffle-name {
+  font-size: 3.5rem;
+  color: #4f46e5; /* indigo-600 */
+  font-weight: 800;
+}
+
+.shuffle-title {
+  font-size: 2rem;
+  color: #64748b; /* slate-500 */
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .shuffle-name {
+    font-size: 2.2rem;
+  }
+  
+  .shuffle-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shuffle-name {
+    font-size: 1.6rem;
+  }
+  
+  .shuffle-title {
+    font-size: 1rem;
+  }
+}

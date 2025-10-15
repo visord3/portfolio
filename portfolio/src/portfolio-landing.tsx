@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import Shuffle from './components/Shuffle';
 
 interface MousePosition {
   x: number;
@@ -31,7 +32,6 @@ const LandingPage: React.FC = () => {
   
   const initialAnimation: AnimationProps = { opacity: 0, y: 20 };
   const animateAnimation: AnimationProps = { opacity: 1, y: 0 };
-  const titleAnimation: AnimationProps = { opacity: 0, y: -20 };
   const buttonAnimation: AnimationProps = { opacity: 0, scale: 0.9 };
   
   return (
@@ -62,24 +62,44 @@ const LandingPage: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 leading-tight"
-            initial={titleAnimation}
-            animate={animateAnimation}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            <span className="text-indigo-600 dark:text-indigo-400">{t('name').split(' ')[0]}</span> {t('name').split(' ')[1]}
-          </motion.h1>
-          
+          {/* Animated Name using Shuffle */}
           <motion.div
             initial={initialAnimation}
             animate={animateAnimation}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="mb-4 sm:mb-6"
+          >
+            <Shuffle
+              text="Evan Belal"
+              tag="h1"
+              className="shuffle-name"
+              shuffleTimes={2}          // 🚀 Quick 2 cycles only
+              duration={60}            // 🚀 Very fast 60ms frames
+              scrambleCharset="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*"
+              triggerOnHover={true}
+              autoStart={true}
+              delay={0}
+            />
+          </motion.div>
+          
+          {/* Animated Title using Shuffle */}
+          <motion.div
+            initial={initialAnimation}
+            animate={animateAnimation}
+            transition={{ delay: 0.6, duration: 10 }}
             className="mb-6 sm:mb-8 px-2"
           >
-            <h2 className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed">
-              {t('title')}
-            </h2>
+            <Shuffle
+              text="Software Engineer"
+              tag="h2"
+              className="shuffle-title"
+              shuffleTimes={2}         // 🚀 Quick 2 cycles only
+              duration={50}            // 🚀 Very fast 50ms frames  
+              scrambleCharset="abcdefghijklmnopqrstuvwxyz0123456789"
+              triggerOnHover={true}
+              autoStart={true}
+              delay={0}
+            />
           </motion.div>
           
           <motion.div
