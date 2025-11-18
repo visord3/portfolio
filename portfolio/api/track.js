@@ -1,3 +1,5 @@
+import { kv } from '@vercel/kv';
+
 export default async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
@@ -19,11 +21,6 @@ export default async function handler(req, res) {
 
     // Fetch location data from IPinfo
     const ipinfoResponse = await fetch(`https://ipinfo.io/${ip}?token=${IPINFO_TOKEN}`);
-    
-    if (!ipinfoResponse.ok) {
-      throw new Error(`IPinfo API error: ${ipinfoResponse.status}`);
-    }
-    
     const locationData = await ipinfoResponse.json();
     
     // Create visitor data object
@@ -31,24 +28,23 @@ export default async function handler(req, res) {
       ip,
       timestamp: new Date().toISOString(),
       userAgent: req.headers['user-agent'],
-      referer: req.headers.referer || 'Direct',
       location: {
         city: locationData.city || 'Unknown',
-        region: locationData.region || 'Unknown',
         country: locationData.country || 'Unknown',
-        coordinates: locationData.loc || null,
-        timezone: locationData.timezone || null,
-        org: locationData.org || null
+        region: locationData.region || 'Unknown'
       },
-      page: req.body.page || '/',
-      sessionId: req.body.sessionId || null
+      page: '/'
     };
 
-    // Log visitor data (you can replace this with database storage)
-    console.log('Visitor tracked:', JSON.stringify(visitorData, null, 2));
+    // Store in KV
+    const visitorId = `visitor_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+    await kv.set(visitorId, visitorData);
+    await kv.lpush('all_visitors', visitorId);
     
-    // Optional: Store in a database here
-    // await storeVisitorData(visitorData);
+    // Keep only last 500 visitors
+    await kv.ltrim('all_visitors', 0, 499);
+    
+    console.log('Visitor tracked:', visitorData);
     
     // Return success response (don't expose sensitive data)
     res.status(200).json({ 
