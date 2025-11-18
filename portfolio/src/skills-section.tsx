@@ -123,11 +123,11 @@ const SkillsSection: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-            {t('skillsTitle') || 'My Skills'}
+            {t('skillsTitle')}
           </h2>
           <div className="w-20 h-1 bg-indigo-500 mx-auto mb-6"></div>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            {t('skillsDescription') || 'Technologies and tools I work with'}
+            {t('skillsDescription')}
           </p>
         </motion.div>
 
