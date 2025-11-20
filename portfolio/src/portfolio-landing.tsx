@@ -56,6 +56,14 @@ const LandingPage: React.FC = () => {
   const animateAnimation: AnimationProps = { opacity: 1, y: 0 };
   const buttonAnimation: AnimationProps = { opacity: 0, scale: 0.9 };
   
+  // Track visitor when page loads
+  useEffect(() => {
+    fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }).catch(console.error);
+  }, []);
+  
   return (
     <div className="relative min-h-screen h-screen bg-gradient-to-br from-white to-slate-100 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 overflow-hidden flex items-center justify-center">
       {/* Interactive background */}
