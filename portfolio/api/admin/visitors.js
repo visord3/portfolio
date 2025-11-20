@@ -2,6 +2,7 @@ import { get } from '@vercel/edge-config';
 
 export default async function handler(req, res) {
   const password = req.query.password || req.headers.authorization;
+  
   if (password !== process.env.ADMIN_PASSWORD) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
@@ -9,23 +10,46 @@ export default async function handler(req, res) {
   try {
     const action = req.query.action || 'list';
 
-    if (action === 'list') {
-      // Get visitors from Edge Config
+    if (action === 'test') {
+      // Test Edge Config connection
+      try {
+        // Check if EDGE_CONFIG exists
+        if (!process.env.EDGE_CONFIG) {
+          return res.status(500).json({
+            error: 'Edge Config not configured',
+            details: 'EDGE_CONFIG environment variable missing'
+          });
+        }
+
+        const visitors = await get('visitors');
+        res.json({
+          success: true,
+          message: 'Edge Config connected successfully',
+          hasVisitors: !!visitors,
+          visitorCount: visitors ? visitors.length : 0,
+          edgeConfigConnected: true
+        });
+      } catch (error) {
+        res.status(500).json({
+          error: 'Edge Config connection failed',
+          details: error.message,
+          hasEdgeConfig: !!process.env.EDGE_CONFIG
+        });
+      }
+    }
+    else if (action === 'list') {
       const visitors = await get('visitors') || [];
-      
       res.json({
         total: visitors.length,
-        visitors: visitors.slice(0, 50) // Show last 50
+        visitors: visitors.slice(0, 50)
       });
     } 
     else if (action === 'stats') {
-      // Get statistics from Edge Config
       const visitors = await get('visitors') || [];
       
-      // Count by country
       const countryStats = {};
       visitors.forEach(visitor => {
-        const country = visitor.location?.country || 'Unknown';
+        const country = visitor.location?.country || visitor.country || 'Unknown';
         countryStats[country] = (countryStats[country] || 0) + 1;
       });
 
@@ -34,23 +58,6 @@ export default async function handler(req, res) {
         countryStats,
         recentVisitors: visitors.slice(-10)
       });
-    }
-    else if (action === 'test') {
-      // Test Edge Config connection
-      try {
-        const visitors = await get('visitors');
-        res.json({
-          success: true,
-          message: 'Edge Config connected',
-          hasVisitors: !!visitors,
-          visitorCount: visitors ? visitors.length : 0
-        });
-      } catch (error) {
-        res.status(500).json({
-          error: 'Edge Config test failed',
-          details: error.message
-        });
-      }
     }
     else {
       res.status(400).json({ error: 'Invalid action. Use: list, stats, or test' });
